@@ -1,4 +1,4 @@
-package main
+\package main
 
 import (
 	"fmt"
@@ -41,13 +41,11 @@ func geoHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getIP(r *http.Request) string {
-	// Try to get real client IP from headers
 	hdr := r.Header.Get("X-Forwarded-For")
 	if hdr != "" {
 		ips := strings.Split(hdr, ",")
 		return strings.TrimSpace(ips[0])
 	}
-
 	ip, _, err := net.SplitHostPort(r.RemoteAddr)
 	if err != nil {
 		return r.RemoteAddr
@@ -67,6 +65,5 @@ func getCountryFromIP(ip string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	countryCode := strings.TrimSpace(string(bodyBytes))
-	return countryCode, nil
+	return strings.TrimSpace(string(bodyBytes)), nil
 }
