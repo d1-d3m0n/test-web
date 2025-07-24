@@ -54,8 +54,9 @@ func getIP(r *http.Request) string {
 }
 
 func getCountryFromIP(ip string) (string, error) {
-	apikey := os.Getenv("IPAPI_KEY")
-	url := fmt.Sprintf("https://ipapi.co/%s/country/?key=%s", ip, apiKey)
+	token := os.Getenv("IPINFO_TOKEN") // Add this in Render dashboard
+	url := fmt.Sprintf("https://ipinfo.io/%s/country?token=%s", ip, token)
+
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", err
