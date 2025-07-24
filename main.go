@@ -30,13 +30,10 @@ func geoHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	switch country {
-	case "IN":
-		fmt.Fprint(w, "Namaste from India 🇮🇳!")
-	case "US":
-		fmt.Fprint(w, "Hello from the USA 🇺🇸!")
-	default:
-		fmt.Fprintf(w, "Hello from %s!", country)
+	if country == "IN" {
+		http.ServeFile(w, r, "india.html")
+	} else {
+		http.ServeFile(w, r, "global.html")
 	}
 }
 
